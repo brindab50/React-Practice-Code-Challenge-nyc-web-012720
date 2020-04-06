@@ -7,10 +7,29 @@ const API = "http://localhost:3000/sushis"
 
 class App extends Component {
 
+state = {
+  sushi: []
+}
+
+
+  componentDidMount(){
+    fetch(API)
+    .then(resp => resp.json())
+    .then(sushiResp => {
+      this.setState({
+        sushi: sushiResp
+      })
+    })
+  }
+
   render() {
+
+
+
+
     return (
       <div className="app">
-        <SushiContainer />
+        <SushiContainer sushi={this.state.sushi}/>
         <Table />
       </div>
     );
@@ -18,3 +37,7 @@ class App extends Component {
 }
 
 export default App;
+
+
+  
+
